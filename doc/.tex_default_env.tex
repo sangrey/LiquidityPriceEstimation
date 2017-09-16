@@ -1,0 +1,136 @@
+
+%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%
+
+%Setup the packages to use UTF-8
+\usepackage[utf8]{luainputenc}
+\usepackage[T1]{fontenc}
+
+%Use AMS packages 
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathrsfs, mathtools}
+\usepackage{thmtools, thm-restate}
+
+%Use standard orientation of the code. 
+\usepackage[american]{babel}
+\usepackage[doublespacing]{setspace}
+
+%Use 1 in margins in final mode, and outer 1.5 in margins in draft mode.
+\usepackage{ifdraft}
+\usepackage[\ifdraft{outer=1.5in, inner=1in}{margin=1in}, headheight=15pt]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-3cm}
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\quad}
+\makeatother
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage{sectsty}
+\sectionfont{\normalfont\scshape\centering\large}
+\providecommand{\keywords}[1]{\small \noindent \textbf{Keywords:} #1 \par}
+\providecommand{\jelcodes}[1]{\small \noindent \textbf{JEL Codes:} #1 \par}
+%Enforce good coding practices. 
+\usepackage[orthodox]{nag}
+\usepackage[all, warning]{onlyamsmath}
+
+%Be able to stick in todo notes and load tikz library.
+\usepackage{tikz, pgf}
+\usepackage[obeyDraft]{todonotes}
+\usetikzlibrary{fit, shapes.geometric}
+\usetikzlibrary{calc, babel}
+\usepackage{graphicx}
+
+% %Switch to single spacing in margin notes. 
+\makeatletter
+    \renewcommand{\todo}[2][]{\@todo[caption={#2}, #1]{\begin{spacing}{0.5}#2\end{spacing}}} 
+\makeatother 
+    
+% %Use sensible defaults for floats, tables, lists, etc. 
+\usepackage[section]{placeins}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+% %Allow for coloration. 
+\usepackage{xcolor}
+
+% %Set up appendices
+\usepackage[title,titletoc,toc]{appendix}
+
+% %Use sensible styling of fonts
+\usepackage{textcomp}
+\usepackage[round-mode=places, round-precision=2]{siunitx}
+\usepackage{microtype}
+
+% %Captions and References 
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[colorlinks, citecolor=blue]{hyperref}
+\usepackage[noabbrev, capitalize]{cleveref}
+\usepackage{csquotes}
+
+
+
+% %%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%% 
+\newcommand*{\Cov}{\mathbb{C}\mathrm{ov}}
+\newcommand*{\E}{\mathbb{E}}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\I}{\mathbb{I}}
+\newcommand*{\Lap}{\mathcal{L}}  
+\newcommand*{\N}{N}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Var}{\mathbb{V}\mathrm{ar}}
+\newcommand*{\aequals}{\overset{a.s.}{=}}
+\newcommand*{\lequals}{\overset{\mathcal{L}}{=}}
+\DeclareMathOperator{\pto}{\overset{\mathbb{P}}{\rightarrow}}
+\DeclareMathOperator{\slto}{\overset{\mathcal{L}-s}{\longrightarrow}}
+
+\newcommand{\qt}[1]{\lq\lq#1\rq\rq}
+\newcommand{\dif}{\mathop{}\!d}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\newcommand{\mvert}[1][\middle]{\ensuremath{\,#1\vert\,}}
+
+% %%%%%%%%%Create shortcuts for the left and right command %%%%%%%%
+\let\roverdot\r
+\let\r\relax
+\newcommand{\r}{\right}
+
+\let\lcrossslash\l
+\let\l\relax
+\newcommand{\l}{\left}
+\newcommand{\ri}{\right}
+
+% Reference commands
+% Reference names in when referring to values. 
+\newcommand*{\titleref}[1]{\namecref{#1} \hyperref[{#1}]{\nameref*{#1}}}
+\newcommand*{\Titleref}[1]{\nameCref{#1} \hyperref[{#1}]{\nameref*{#1}}}
+\newcommand*{\titlerefs}[2]{\namecrefs{#1} \hyperref[{#1}]{\nameref*{#1}} and \hyperref[{#2}]{\nameref*{#2}}}
+\newcommand*{\titlerefsthree}[3]{\namecrefs{#1} \hyperref[{#1}]{\nameref*{#1}}, \hyperref[{#2}]{%
+             \nameref*{#2}}, and \hyperref[{#2}]{\nameref*{#3}}}
+
+%%%%%%%%%%%%%%%%% Theorem Environments %%%%%%%%%%%%
+\declaretheoremstyle[notefont=\bfseries, headformat={\NAME \NOTE}, notebraces={}{}]{assumptionstyle}
+
+    
+\declaretheorem{theorem}
+\declaretheorem[parent=theorem]{corollary}
+\declaretheorem[sibling=theorem]{lemma}
+\declaretheorem[style=assumptionstyle]{assumption}
+\declaretheorem[style=definition]{definition}
+%If I turn off capitalization globally, I need to change this.
+\crefname{assumption}{Assumption}{Assumptions} 
+\Crefname{assumption}{Assumption}{Assumptions}
+
+%%%%%%%%%%%%% Add  Figure Folder %%%%%%%%%%
+\graphicspath{{figures/}}
+
+
+\newcommand\circletext[1]{%
+    \begin{tikzpicture}
+        \node at (0,0) [ellipse, draw, minimum size=1.4em,fill=blue!10, align=center, anchor=center]  {#1};
+    \end{tikzpicture}
+}

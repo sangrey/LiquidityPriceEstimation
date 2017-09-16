@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+\input{.tex_default_env.tex}
+
+\usepackage[backend=biber, autopunct=true, authordate]{biblatex-chicago}  
+
+\title{Liquidity Estimation}
+\date{\today}
+\author{Paul Sangrey and Christos Makridis}
+
+\begin{document}
+
+\maketitle 
+
+
+\section{Asset Pricing Problem}
+
+
+\begin{gather}
+    V\left(w_t\right) = \max u(c_t) + \beta \E_{market}[ V\left(w_{t+1}\right)] \\
+    \text{s.t.}\ w_{t+1} = (1 + r^r_{t+1}) (w_t - c_t - s_t) + (1 + r^s_{t+1}) s_t  \\
+    \text{s.t.}\  s_t \geq \text{margin\_constraint}\ \cdot w_t  \label{eqn:liquidity_constraint}
+\end{gather}
+
+The effective price of liquidity is the Lagrange multiplier for \cref{eqn:liquidity_constraint}. 
+The above equation implies that we have an Euler equation of the following form.
+
+\begin{equation}
+    \E\left[ \frac{u'\left(c_{t+1}\right)}{u'\left(c_t\right)} \cdot \frac{\dif P^M}{\dif P^{True}} \cdot 
+    \text{\textit{liquidity\_term}} \cdot R_{t+1} \right] = 1 
+\end{equation}
+
+
+\section{Identification Strategy}
+
+
+
+\begin{itemize}
+    \item Put the above expression logs and in continuous time, and difference.
+    \item Use your consumption data to control for the change in the ratio of marginal utilities.
+    \item Use volatility to control for the change in beliefs. (We should be able to get the likelihood's in
+        closed form.)
+    \item We observe returns. 
+    \item That leaves us with the liquidity term. (Or more generally a constraint term.)
+    \item This probably isn't enough to truly identify the model because there's probably a drift in the ratio of
+        probability term, but we can probably produce rather tight bounds.
+\end{itemize}
+
+\section{\qt{Division of Labor}}
+
+\begin{itemize}
+    \item I know the high-frequency finance / information theory relevant to identify the model.
+    \item You're know a bunch about regression-style identification.
+    \item It might be a good idea to get a straight-up finance person on the project.
+    \item We can all learn from each other.
+\end{itemize}
+
+\end{document}
