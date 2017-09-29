@@ -54,4 +54,26 @@ The above equation implies that we have an Euler equation of the following form.
     \item We can all learn from each other.
 \end{itemize}
 
+
+
+
+\section{Regressions}
+
+
+\begin{equation}
+    \frac{R_t}{\sigma_t} = \beta_0 + \beta_1 \Delta c_t + \beta_3 \Delta c_t^2 + \beta_2 \sigma^2_t + \beta_3
+    \Delta Beliefs_t  + \beta_4 \Delta Beliefs^2_t + \eta_t
+\end{equation}
+
+The innovation to the regression above $\eta_t$ is a proxy for liquidity changes.
+So we want to sum it, and compare it to various other liquidity measures.
+
+The $\sigma_t$ under the $R_T$ is a heteroskedasticity adjustment.
+In theory $R_t$ should be the difference between the stock market and the risk-free rate, but because of the
+zero-lower bound, the risk-free rate is essentially zero. 
+The square terms are in there because of Ito's Lemma. 
+The $\sigma_t^2$ is acting as a proxy for the rate of change in beliefs.
+
+
+
 \end{document}
